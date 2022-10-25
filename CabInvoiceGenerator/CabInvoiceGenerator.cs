@@ -19,6 +19,19 @@ namespace CabInvoiceGenerator
             return Math.Max(this.cabFare, MINIMUM_FARE);
             Console.WriteLine("Cab Fare=" + cabFare);
         }
+        //uc2
+        public InvoiceSummary GetMultipleRideFare(Ride[] rides)
+        {
+            double totalRideFare = 0.0;
+            foreach (Ride ride in rides)
+            {
+                totalRideFare += this.CalculateFare(ride.rideDistance, ride.rideTime);
+            }
+            return new InvoiceSummary(totalRideFare, rides.Length);
+            Ride[] ride = { };
+            InvoiceSummary data = GetMultipleRideFare(ride);
+            Console.WriteLine(data.averageFare + "\n" + data.noOfRides);
+        }
     }
 }
 
